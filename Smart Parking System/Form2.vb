@@ -296,19 +296,127 @@ Public Class Form2
         Dim table As New DataTable("anggota")
         Dim adapter As New MySqlDataAdapter("select foto1,foto2,foto3 from anggota where id_card = '" + ComboId.Text + "'", conn)
         adapter.Fill(table)
-        If ofd1.FileName = Nothing Then
-            Dim row As DataRow = table.Rows(0)
-            Using ms As New IO.MemoryStream(CType(row(0), Byte()))
-                Dim img As Image = Image.FromStream(ms)
-                pictureFoto1.Image = img
+        If TxtAlamat.Text = "" Or TxtId.Text = "" Or TxtJenis.Text = "" Or TxtKartu.Text = "" Or TxtMerk.Text = "" Or TxtNama.Text = "" Or TxtNoKend.Text = "" Or TxtPekerjaan.Text = "" Or TxtUmur.Text = "" Then
+            MsgBox("Harap Isi Semua Form")
+        Else
+            If ofd1.FileName = Nothing Then
+                Dim row As DataRow = table.Rows(0)
+                Using ms As New IO.MemoryStream(CType(row(0), Byte()))
+                    Dim img As Image = Image.FromStream(ms)
+                    pictureFoto1.Image = img
+                    Dim ms2 As MemoryStream = New MemoryStream
+                    Dim ms3 As MemoryStream = New MemoryStream
+                    pictureFoto2.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    pictureFoto3.Image.Save(ms3, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    ms2.ToArray()
+                    ms3.ToArray()
+                    Try
+                        With SqlCommand.Parameters
+                            .AddWithValue("@idcard", TxtKartu.Text)
+                            .AddWithValue("@noid", TxtId.Text)
+                            .AddWithValue("@nama", TxtNama.Text)
+                            .AddWithValue("@umur", TxtUmur.Text)
+                            .AddWithValue("@alamat", TxtAlamat.Text)
+                            .AddWithValue("@pekerjaan", TxtPekerjaan.Text)
+                            .AddWithValue("@nobil", TxtNoKend.Text)
+                            .AddWithValue("@jenis", TxtJenis.Text)
+                            .AddWithValue("@merk", TxtMerk.Text)
+                            .AddWithValue("@foto1", CType(row(0), Byte()))
+                            .AddWithValue("@foto2", ms2.ToArray)
+                            .AddWithValue("@foto3", ms3.ToArray)
+                        End With
+                        SqlCommand.ExecuteNonQuery()
+                        MsgBox("Data Berhasil Diperbaharui")
+                        TextClear()
+                        ButtonDisabled()
+                        LoadGrid()
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                    End Try
+                End Using
+            ElseIf ofd2.FileName = Nothing Then
+                Dim row As DataRow = table.Rows(0)
+                Using ms As New IO.MemoryStream(CType(row(1), Byte()))
+                    Dim img As Image = Image.FromStream(ms)
+                    pictureFoto2.Image = img
+                    Dim ms2 As MemoryStream = New MemoryStream
+                    Dim ms3 As MemoryStream = New MemoryStream
+                    pictureFoto1.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    pictureFoto3.Image.Save(ms3, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    ms2.ToArray()
+                    ms3.ToArray()
+                    Try
+                        With SqlCommand.Parameters
+                            .AddWithValue("@idcard", TxtKartu.Text)
+                            .AddWithValue("@noid", TxtId.Text)
+                            .AddWithValue("@nama", TxtNama.Text)
+                            .AddWithValue("@umur", TxtUmur.Text)
+                            .AddWithValue("@alamat", TxtAlamat.Text)
+                            .AddWithValue("@pekerjaan", TxtPekerjaan.Text)
+                            .AddWithValue("@nobil", TxtNoKend.Text)
+                            .AddWithValue("@jenis", TxtJenis.Text)
+                            .AddWithValue("@merk", TxtMerk.Text)
+                            .AddWithValue("@foto2", CType(row(1), Byte()))
+                            .AddWithValue("@foto1", ms2.ToArray)
+                            .AddWithValue("@foto3", ms3.ToArray)
+                        End With
+                        SqlCommand.ExecuteNonQuery()
+                        MsgBox("Data Berhasil Diperbaharui")
+                        TextClear()
+                        ButtonDisabled()
+                        LoadGrid()
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                    End Try
+                End Using
+            ElseIf ofd3.FileName = Nothing Then
+                Dim row As DataRow = table.Rows(0)
+                Using ms As New IO.MemoryStream(CType(row(2), Byte()))
+                    Dim img As Image = Image.FromStream(ms)
+                    pictureFoto3.Image = img
+                    Dim ms2 As MemoryStream = New MemoryStream
+                    Dim ms3 As MemoryStream = New MemoryStream
+                    pictureFoto1.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    pictureFoto2.Image.Save(ms3, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    ms2.ToArray()
+                    ms3.ToArray()
+                    Try
+                        With SqlCommand.Parameters
+                            .AddWithValue("@idcard", TxtKartu.Text)
+                            .AddWithValue("@noid", TxtId.Text)
+                            .AddWithValue("@nama", TxtNama.Text)
+                            .AddWithValue("@umur", TxtUmur.Text)
+                            .AddWithValue("@alamat", TxtAlamat.Text)
+                            .AddWithValue("@pekerjaan", TxtPekerjaan.Text)
+                            .AddWithValue("@nobil", TxtNoKend.Text)
+                            .AddWithValue("@jenis", TxtJenis.Text)
+                            .AddWithValue("@merk", TxtMerk.Text)
+                            .AddWithValue("@foto3", CType(row(2), Byte()))
+                            .AddWithValue("@foto1", ms2.ToArray)
+                            .AddWithValue("@foto2", ms3.ToArray)
+                        End With
+                        SqlCommand.ExecuteNonQuery()
+                        MsgBox("Data Berhasil Diperbaharui")
+                        TextClear()
+                        ButtonDisabled()
+                        LoadGrid()
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                    End Try
+                End Using
+            Else
+                Dim ms As MemoryStream = New MemoryStream
                 Dim ms2 As MemoryStream = New MemoryStream
                 Dim ms3 As MemoryStream = New MemoryStream
+                pictureFoto1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
                 pictureFoto2.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
                 pictureFoto3.Image.Save(ms3, System.Drawing.Imaging.ImageFormat.Jpeg)
+                ms.ToArray()
                 ms2.ToArray()
                 ms3.ToArray()
                 Try
                     With SqlCommand.Parameters
+                        .AddWithValue("@id", ComboId.Text)
                         .AddWithValue("@idcard", TxtKartu.Text)
                         .AddWithValue("@noid", TxtId.Text)
                         .AddWithValue("@nama", TxtNama.Text)
@@ -318,7 +426,7 @@ Public Class Form2
                         .AddWithValue("@nobil", TxtNoKend.Text)
                         .AddWithValue("@jenis", TxtJenis.Text)
                         .AddWithValue("@merk", TxtMerk.Text)
-                        .AddWithValue("@foto1", CType(row(0), Byte()))
+                        .AddWithValue("@foto1", ms.ToArray)
                         .AddWithValue("@foto2", ms2.ToArray)
                         .AddWithValue("@foto3", ms3.ToArray)
                     End With
@@ -330,112 +438,8 @@ Public Class Form2
                 Catch ex As Exception
                     MsgBox(ex.Message)
                 End Try
-            End Using
-        ElseIf ofd2.FileName = Nothing Then
-            Dim row As DataRow = table.Rows(0)
-            Using ms As New IO.MemoryStream(CType(row(1), Byte()))
-                Dim img As Image = Image.FromStream(ms)
-                pictureFoto2.Image = img
-                Dim ms2 As MemoryStream = New MemoryStream
-                Dim ms3 As MemoryStream = New MemoryStream
-                pictureFoto1.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
-                pictureFoto3.Image.Save(ms3, System.Drawing.Imaging.ImageFormat.Jpeg)
-                ms2.ToArray()
-                ms3.ToArray()
-                Try
-                    With SqlCommand.Parameters
-                        .AddWithValue("@idcard", TxtKartu.Text)
-                        .AddWithValue("@noid", TxtId.Text)
-                        .AddWithValue("@nama", TxtNama.Text)
-                        .AddWithValue("@umur", TxtUmur.Text)
-                        .AddWithValue("@alamat", TxtAlamat.Text)
-                        .AddWithValue("@pekerjaan", TxtPekerjaan.Text)
-                        .AddWithValue("@nobil", TxtNoKend.Text)
-                        .AddWithValue("@jenis", TxtJenis.Text)
-                        .AddWithValue("@merk", TxtMerk.Text)
-                        .AddWithValue("@foto2", CType(row(1), Byte()))
-                        .AddWithValue("@foto1", ms2.ToArray)
-                        .AddWithValue("@foto3", ms3.ToArray)
-                    End With
-                    SqlCommand.ExecuteNonQuery()
-                    MsgBox("Data Berhasil Diperbaharui")
-                    TextClear()
-                    ButtonDisabled()
-                    LoadGrid()
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                End Try
-            End Using
-        ElseIf ofd3.FileName = Nothing Then
-            Dim row As DataRow = table.Rows(0)
-            Using ms As New IO.MemoryStream(CType(row(2), Byte()))
-                Dim img As Image = Image.FromStream(ms)
-                pictureFoto3.Image = img
-                Dim ms2 As MemoryStream = New MemoryStream
-                Dim ms3 As MemoryStream = New MemoryStream
-                pictureFoto1.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
-                pictureFoto2.Image.Save(ms3, System.Drawing.Imaging.ImageFormat.Jpeg)
-                ms2.ToArray()
-                ms3.ToArray()
-                Try
-                    With SqlCommand.Parameters
-                        .AddWithValue("@idcard", TxtKartu.Text)
-                        .AddWithValue("@noid", TxtId.Text)
-                        .AddWithValue("@nama", TxtNama.Text)
-                        .AddWithValue("@umur", TxtUmur.Text)
-                        .AddWithValue("@alamat", TxtAlamat.Text)
-                        .AddWithValue("@pekerjaan", TxtPekerjaan.Text)
-                        .AddWithValue("@nobil", TxtNoKend.Text)
-                        .AddWithValue("@jenis", TxtJenis.Text)
-                        .AddWithValue("@merk", TxtMerk.Text)
-                        .AddWithValue("@foto3", CType(row(2), Byte()))
-                        .AddWithValue("@foto1", ms2.ToArray)
-                        .AddWithValue("@foto2", ms3.ToArray)
-                    End With
-                    SqlCommand.ExecuteNonQuery()
-                    MsgBox("Data Berhasil Diperbaharui")
-                    TextClear()
-                    ButtonDisabled()
-                    LoadGrid()
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                End Try
-            End Using
-        Else
-            Dim ms As MemoryStream = New MemoryStream
-            Dim ms2 As MemoryStream = New MemoryStream
-            Dim ms3 As MemoryStream = New MemoryStream
-            pictureFoto1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
-            pictureFoto2.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg)
-            pictureFoto3.Image.Save(ms3, System.Drawing.Imaging.ImageFormat.Jpeg)
-            ms.ToArray()
-            ms2.ToArray()
-            ms3.ToArray()
-            Try
-                With SqlCommand.Parameters
-                    .AddWithValue("@id", ComboId.Text)
-                    .AddWithValue("@idcard", TxtKartu.Text)
-                    .AddWithValue("@noid", TxtId.Text)
-                    .AddWithValue("@nama", TxtNama.Text)
-                    .AddWithValue("@umur", TxtUmur.Text)
-                    .AddWithValue("@alamat", TxtAlamat.Text)
-                    .AddWithValue("@pekerjaan", TxtPekerjaan.Text)
-                    .AddWithValue("@nobil", TxtNoKend.Text)
-                    .AddWithValue("@jenis", TxtJenis.Text)
-                    .AddWithValue("@merk", TxtMerk.Text)
-                    .AddWithValue("@foto1", ms.ToArray)
-                    .AddWithValue("@foto2", ms2.ToArray)
-                    .AddWithValue("@foto3", ms3.ToArray)
-                End With
-                SqlCommand.ExecuteNonQuery()
-                MsgBox("Data Berhasil Diperbaharui")
-                TextClear()
-                ButtonDisabled()
-                LoadGrid()
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-            conn.Close()
+                conn.Close()
+            End If
         End If
     End Sub
 
