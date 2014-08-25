@@ -263,6 +263,7 @@ Public Class Form1
                 myPort.Write(0)
                 update_status1()
                 kend_masuk = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+                f3.Label2.Text = "Penghuni"
             ElseIf count = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
@@ -271,6 +272,7 @@ Public Class Form1
                 myPort.Write(2)
                 update_status0()
                 insertLogPenghuni()
+                fpet.Label5.Text = "Tamu"
             ElseIf count = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
@@ -283,6 +285,7 @@ Public Class Form1
                 update_status_tamu1()
                 jam_tamu_masuk = DateTime.Now.Hour
                 kend_masuk = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+                f3.Label2.Text = "Tamu"
             ElseIf count_tamu = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
@@ -294,6 +297,7 @@ Public Class Form1
                 updateJam()
                 hitungBiaya()
                 insertLogTamu()
+                fpet.Label5.Text = "Tamu"
             ElseIf count_tamu = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
