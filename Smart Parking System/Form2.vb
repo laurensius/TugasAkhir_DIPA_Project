@@ -238,7 +238,7 @@ Public Class Form2
         End If
         conn.Close()
     End Sub
-
+    '-------START CONTROL KELOLA PENGGUNA----------
     Private Sub BtnSimpan_Click(sender As Object, e As EventArgs) Handles BtnSimpan.Click
         connString = "Server=Localhost;Database=smart_parking;User Id=root;password="
         conn = New MySqlConnection(connString)
@@ -462,6 +462,7 @@ Public Class Form2
             MsgBox(ex.Message)
         End Try
     End Sub
+    '-------END CONTROL KELOLA PENGGUNA--------
 
     Private Sub ComboId_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboId.SelectedIndexChanged
         LoadData()

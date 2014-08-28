@@ -38,7 +38,7 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        display()
+        C_PantauLahan()
         lapangan()
 
         If TextBox10.Text <> "" Then
@@ -189,8 +189,8 @@ Public Class Form1
         s4 = ping_4
         valNFC = nfc
     End Sub
-
-    Sub display()
+    '-----START CONTROL PANTAU LAHAN-----
+    Sub C_PantauLahan()
         TextBox6.Text = ""
         TextBox7.Text = ""
         TextBox8.Text = ""
@@ -215,22 +215,15 @@ Public Class Form1
             TextBox10.Text = data_kotor.Substring(0, data_kotor.Length - 2)
 
         End If
-
-        'If (TextBox10.Text = "P4324-4543-245") Then
-        '    Label12.Text = "Informasi : Data match!"
-        '    myPort.Write(0)
-        'Else
-        '    If (TextBox10.Text <> "P4324-4543-245") Then
-        '        Label12.Text = "Informasi : Data not match!"
-        '    End If
-        'End If
     End Sub
+    '-----END CONTROL PANTAU LAHAN-------
     Sub konversiSensor()
         sensor1 = Val(TextBox6.Text)
         sensor2 = Val(TextBox7.Text)
         sensor3 = Val(TextBox8.Text)
         sensor4 = Val(TextBox9.Text)
     End Sub
+    '------START CONTROL ENTRY KENDARAAN & VERIFIKASI KELUAR--------
     Sub verifikasiKartu()
         bacaSerial()
         Dim da, da_kend, da_tamu As MySqlDataAdapter
@@ -272,7 +265,7 @@ Public Class Form1
                 myPort.Write(2)
                 update_status0()
                 insertLogPenghuni()
-                fpet.Label5.Text = "Tamu"
+                fpet.Label5.Text = "Pnghuni"
             ElseIf count = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
@@ -301,9 +294,9 @@ Public Class Form1
             ElseIf count_tamu = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
-        End If
-        
+        End If   
     End Sub
+    '------END CONTROL ENTRY KENDARAAN & VERIFIKASI KELUAR--------
     Private Sub update_status1()
         Dim val As String
         Dim sqlupd As String

@@ -5,6 +5,7 @@ Imports System.IO.Ports
 Public Class Form4
     Dim myPort As New SerialPort
     Dim conn As MySqlConnection
+    Dim cmd As MySqlCommand = Nothing
     Dim connString As String
     Dim sql As String
     Dim da As MySqlDataAdapter
@@ -29,7 +30,7 @@ Public Class Form4
     Sub buka()
         Button3.Enabled = True
         ComboId.Enabled = True
-        Button1.Enabled = True
+        C_Generate.Enabled = True
         Button2.Enabled = False
         With myPort
             .PortName = ComboBox1.Text
@@ -62,23 +63,41 @@ Public Class Form4
     End Sub
     Sub buttonDisable()
         ComboId.Enabled = False
-        Button1.Enabled = False
+        C_Generate.Enabled = False
         Button3.Enabled = False
         Button2.Enabled = True
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         buka()
     End Sub
+    '-----START CONTROL GENERATE------
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim dataToWrite As String
-        dataToWrite = ComboId.Text
-        myPort.Write(dataToWrite)
-        MsgBox("Tag Written")
     End Sub
+    '-----END CONTROL GENERATE--------
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         buttonDisable()
         myPort.Close()
+    End Sub
+
+    Private Sub updateStatus()
+        Dim sqlupd As String
+        Dim val As Integer
+        connString = "Server=Localhost;Database=smart_parking;User Id=root;password="
+        conn = New MySqlConnection(connString)
+        conn.Open()
+        Val = "1"
+        sqlupd = "update anggota set status_kartu = '" & val & "'  where id_card = '" + ComboId.Text + "'"
+        cmd = New MySqlCommand(sqlupd, conn)
+        cmd.ExecuteNonQuery()
+    End Sub
+
+    Private Sub C_Generate_Click(sender As Object, e As EventArgs) Handles C_Generate.Click
+        Dim dataToWrite As String
+        dataToWrite = ComboId.Text
+        myPort.Write(dataToWrite)
+        MsgBox("Tag Written")
+        updateStatus()
     End Sub
 End Class

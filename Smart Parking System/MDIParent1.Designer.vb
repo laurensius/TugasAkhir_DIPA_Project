@@ -24,6 +24,7 @@ Partial Class MDIParent1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MDIParent1))
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.KelolaPenggunaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KelolaPenggunaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -90,8 +91,8 @@ Partial Class MDIParent1
         'DisplayToolStripMenuItem
         '
         Me.DisplayToolStripMenuItem.Name = "DisplayToolStripMenuItem"
-        Me.DisplayToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
-        Me.DisplayToolStripMenuItem.Text = "Display"
+        Me.DisplayToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
+        Me.DisplayToolStripMenuItem.Text = "Area Parkir"
         '
         'VerifikasiKeluarToolStripMenuItem
         '
@@ -125,6 +126,8 @@ Partial Class MDIParent1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ClientSize = New System.Drawing.Size(632, 453)
         Me.ControlBox = False
         Me.Controls.Add(Me.MenuStrip)
@@ -133,7 +136,7 @@ Partial Class MDIParent1
         Me.MainMenuStrip = Me.MenuStrip
         Me.Name = "MDIParent1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "DIPA (Digital Integrated Parking Allocation)"
+        Me.Text = "Menu Utama"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()

@@ -46,6 +46,8 @@ Public Class MDIParent1
         mdiChild.MdiParent = Me
         If Application.OpenForms().OfType(Of Form3).Any And Application.OpenForms().OfType(Of Petugas).Any Then
             mdiChild.Show()
+        ElseIf Login.level = 0 Then
+            mdiChild.Show()
         Else
             MsgBox("Silahkan Buka Form Display dan Verifikasi Keluar Terlebih Dahulu")
         End If

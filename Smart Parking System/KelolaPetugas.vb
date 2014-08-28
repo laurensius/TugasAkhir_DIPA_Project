@@ -132,7 +132,7 @@ Public Class KelolaPetugas
     Private Sub cmbPetugas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPetugas.SelectedIndexChanged
         LoadData()
     End Sub
-
+    '-----START CONTROL KELOLA PETUGAS------
     Private Sub btnSimpan_Click(sender As Object, e As EventArgs) Handles btnSimpan.Click
         connString = "Server=Localhost;Database=smart_parking;User Id=root;password="
         conn = New MySqlConnection(connString)
@@ -197,4 +197,5 @@ Public Class KelolaPetugas
             MsgBox(ex.Message)
         End Try
     End Sub
+    '-----END CONTROL KELOLA PETUGAS-------
 End Class

@@ -27,7 +27,7 @@ Public Class log_petugas
             ComboBox1.SelectedIndex = 0
         Next
     End Sub
-    Private Sub loadGrid()
+    Private Sub C_LogPetugas()
         connString = "Server=Localhost;Database=smart_parking;User Id=root;password="
         conn = New MySqlConnection(connString)
         conn.Open()
@@ -47,7 +47,7 @@ Public Class log_petugas
     '-----END CONTROL LOG PETUGAS-------
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        loadGrid()
+        C_LogPetugas()
     End Sub
 
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
