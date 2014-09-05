@@ -104,7 +104,7 @@ Public Class KelolaPetugas
             End If
             If sitem = "update" Then
                 txtUsername.Enabled = True
-                txtPassword.Enabled = True
+                txtPassword.Enabled = False
                 txtNama.Enabled = True
                 txtAlamat.Enabled = True
                 btnUpdate.Enabled = True
@@ -116,7 +116,7 @@ Public Class KelolaPetugas
             End If
             If sitem = "delete" Then
                 txtUsername.Enabled = True
-                txtPassword.Enabled = True
+                txtPassword.Enabled = False
                 txtNama.Enabled = True
                 txtAlamat.Enabled = True
                 btnUpdate.Enabled = False
