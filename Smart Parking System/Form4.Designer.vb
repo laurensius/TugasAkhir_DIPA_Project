@@ -88,6 +88,10 @@ Partial Class Form4
         Me.Button3.Text = "Disconnect"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 500
+        '
         'C_Generate
         '
         Me.C_Generate.Location = New System.Drawing.Point(242, 131)

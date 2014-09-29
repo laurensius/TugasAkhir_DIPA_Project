@@ -66,7 +66,7 @@ Public Class Form2
                 LoadId()
                 ComboId.Enabled = True
                 TxtId.Enabled = True
-                TxtKartu.Enabled = True
+                TxtKartu.Enabled = False
                 TxtNama.Enabled = True
                 TxtPekerjaan.Enabled = True
                 TxtUmur.Enabled = True
@@ -80,6 +80,7 @@ Public Class Form2
                 BtnUpdate.Enabled = True
                 BtnSimpan.Enabled = False
                 BtnHapus.Enabled = False
+                TextClear()
                 LoadGrid()
                 Dim folder As String = "D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\img"
                 Dim filename As String = System.IO.Path.Combine(folder, "user_icon.jpg")
@@ -92,7 +93,7 @@ Public Class Form2
                 LoadId()
                 ComboId.Enabled = True
                 TxtId.Enabled = True
-                TxtKartu.Enabled = True
+                TxtKartu.Enabled = False
                 TxtNama.Enabled = True
                 TxtPekerjaan.Enabled = True
                 TxtUmur.Enabled = True
@@ -103,6 +104,7 @@ Public Class Form2
                 BtnHapus.Enabled = True
                 BtnSimpan.Enabled = False
                 BtnUpdate.Enabled = False
+                TextClear()
                 LoadGrid()
                 Dim folder As String = "D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\img"
                 Dim filename As String = System.IO.Path.Combine(folder, "user_icon.jpg")
@@ -277,7 +279,9 @@ Public Class Form2
                 SqlCommand.ExecuteNonQuery()
                 MsgBox("Data Tersimpan")
                 TextClear()
+                ButtonDisabled()
                 LoadGrid()
+                ComboId.Focus()
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
@@ -520,25 +524,30 @@ Public Class Form2
         da = New MySqlDataAdapter(sql, conn)
         ds = New DataSet
         da.Fill(ds, "anggota")
-        id = ds.Tables("anggota").Rows(0).Item(0)
-        id2 = id.Substring(1)
-        id3 = id2.Substring(0, id2.Length - 1)
-        id4 = Val(id3)
-        id5 = id4 + 1
-        idx = id5.ToString
-        If idx.Length = 1 Then
-            new_id = "P00" + idx + "E"
-        Else
-            If idx.Length = 2 Then
-                new_id = "P0" + idx + "E"
-
+        If ds.Tables("anggota").Rows.Count > 0 Then
+            id = ds.Tables("anggota").Rows(0).Item(0)
+            id2 = id.Substring(1)
+            id3 = id2.Substring(0, id2.Length - 1)
+            id4 = Val(id3)
+            id5 = id4 + 1
+            idx = id5.ToString
+            If idx.Length = 1 Then
+                new_id = "P00" + idx + "E"
             Else
-                If idx.Length = 3 Then
-                    new_id = "P" + idx + "E"
+                If idx.Length = 2 Then
+                    new_id = "P0" + idx + "E"
+
+                Else
+                    If idx.Length = 3 Then
+                        new_id = "P" + idx + "E"
+                    End If
                 End If
             End If
+            TxtKartu.Text = new_id
+        Else
+            TxtKartu.Text = "P001E"
         End If
-        TxtKartu.Text = new_id
+        
         conn.Close()
     End Sub
 

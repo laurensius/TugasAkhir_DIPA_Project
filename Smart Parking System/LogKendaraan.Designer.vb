@@ -40,7 +40,7 @@ Partial Class LogKendaraan
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersWidth = 40
-        Me.DataGridView1.Size = New System.Drawing.Size(376, 233)
+        Me.DataGridView1.Size = New System.Drawing.Size(254, 233)
         Me.DataGridView1.TabIndex = 12
         '
         'Label3
@@ -54,7 +54,7 @@ Partial Class LogKendaraan
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(213, 55)
+        Me.Button1.Location = New System.Drawing.Point(193, 55)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 10
@@ -65,7 +65,7 @@ Partial Class LogKendaraan
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(75, 57)
+        Me.ComboBox1.Location = New System.Drawing.Point(66, 57)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox1.TabIndex = 9
@@ -83,7 +83,7 @@ Partial Class LogKendaraan
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(110, 9)
+        Me.Label1.Location = New System.Drawing.Point(63, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(155, 18)
         Me.Label1.TabIndex = 7
@@ -93,7 +93,7 @@ Partial Class LogKendaraan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(394, 358)
+        Me.ClientSize = New System.Drawing.Size(274, 358)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button1)

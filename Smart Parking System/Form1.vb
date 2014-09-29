@@ -265,7 +265,8 @@ Public Class Form1
                 myPort.Write(2)
                 update_status0()
                 insertLogPenghuni()
-                fpet.Label5.Text = "Pnghuni"
+                fpet.Label5.Text = "Penghuni"
+                fpet.Label7.Text = ""
             ElseIf count = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
@@ -401,7 +402,7 @@ Public Class Form1
                 f3.LabelA4.ForeColor = Color.Red
             End If
         Catch ex As Exception
-            MsgBox("Harap Buka Form Display Terlebih Dahulu !")
+            'MsgBox("Harap Buka Form Display Terlebih Dahulu !")
             init()
             myPort.Close()
             Timer1.Stop()
@@ -447,11 +448,12 @@ Public Class Form1
         masuk = ds.Tables("tamu").Rows(0).Item(0)
         keluar = ds.Tables("tamu").Rows(0).Item(1)
         jumlah = (keluar - masuk)
+        fpet.Label7.Text = ""
         If jumlah = 0 Then
-            fpet.Label7.Text = "1000"
+            fpet.Label7.Text = "Rp." + "1000"
         Else
             jumlah2 = jumlah * 1000
-            fpet.Label7.Text = jumlah2.ToString
+            fpet.Label7.Text = "Rp." + jumlah2.ToString
         End If
     End Sub
     Private Sub insertLogPenghuni()

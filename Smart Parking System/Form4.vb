@@ -13,6 +13,8 @@ Public Class Form4
     Dim count As Integer
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         init()
+    End Sub
+    Sub loadData()
         connString = "Server=Localhost;Database=smart_parking;User Id=root;password="
         conn = New MySqlConnection(connString)
         conn.Open()
@@ -21,12 +23,11 @@ Public Class Form4
         ds = New DataSet
         da.Fill(ds, "anggota")
         count = ds.Tables("anggota").Rows.Count
-        For i As Integer = 0 To count
+        For i As Integer = 0 To count - 1
             ComboId.Items.Add(ds.Tables("anggota").Rows(i).Item("id_card"))
             ComboId.SelectedIndex = 0
         Next
     End Sub
-
     Sub buka()
         Button3.Enabled = True
         ComboId.Enabled = True
@@ -51,6 +52,7 @@ Public Class Form4
     End Sub
     Sub init()
         buttonDisable()
+        Timer1.Stop()
         ComboBox1.Items.Clear()
         Try
             For i As Integer = 0 To My.Computer.Ports.SerialPortNames.Count - 1
@@ -66,9 +68,12 @@ Public Class Form4
         C_Generate.Enabled = False
         Button3.Enabled = False
         Button2.Enabled = True
+        ComboId.Items.Clear()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         buka()
+        loadData()
+        Timer1.Start()
     End Sub
     '-----START CONTROL GENERATE------
     Private Sub Button1_Click(sender As Object, e As EventArgs)
@@ -94,10 +99,26 @@ Public Class Form4
     End Sub
 
     Private Sub C_Generate_Click(sender As Object, e As EventArgs) Handles C_Generate.Click
-        Dim dataToWrite As String
+        Dim dataToWrite, param As String
+        Dim paramInt As Integer
+        param = myPort.ReadExisting
+        paramInt = Val(param)
         dataToWrite = ComboId.Text
         myPort.Write(dataToWrite)
-        MsgBox("Tag Written")
-        updateStatus()
+        If paramInt = 1 Then
+            MsgBox("input berhasil")
+            updateStatus()
+            init()
+            myPort.Close()
+            ComboId.Items.Clear()
+        ElseIf paramInt = 0 Then
+            MsgBox("Input Gagal")
+        Else
+            MsgBox("Input Gagal")
+        End If
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        
     End Sub
 End Class

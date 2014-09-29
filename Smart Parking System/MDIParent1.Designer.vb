@@ -31,6 +31,7 @@ Partial Class MDIParent1
         Me.KelolaPetugasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenerateKartuParkirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogPetugasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LogKendaraanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DisplayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerifikasiKeluarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -53,7 +54,7 @@ Partial Class MDIParent1
         '
         'KelolaPenggunaToolStripMenuItem
         '
-        Me.KelolaPenggunaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KelolaPenggunaToolStripMenuItem1, Me.KelolaPetugasToolStripMenuItem, Me.GenerateKartuParkirToolStripMenuItem, Me.LogPetugasToolStripMenuItem})
+        Me.KelolaPenggunaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KelolaPenggunaToolStripMenuItem1, Me.KelolaPetugasToolStripMenuItem, Me.GenerateKartuParkirToolStripMenuItem, Me.LogPetugasToolStripMenuItem, Me.LogKendaraanToolStripMenuItem})
         Me.KelolaPenggunaToolStripMenuItem.Name = "KelolaPenggunaToolStripMenuItem"
         Me.KelolaPenggunaToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.KelolaPenggunaToolStripMenuItem.Text = "Kelola Data"
@@ -82,6 +83,12 @@ Partial Class MDIParent1
         Me.LogPetugasToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.LogPetugasToolStripMenuItem.Text = "Log Petugas"
         '
+        'LogKendaraanToolStripMenuItem
+        '
+        Me.LogKendaraanToolStripMenuItem.Name = "LogKendaraanToolStripMenuItem"
+        Me.LogKendaraanToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.LogKendaraanToolStripMenuItem.Text = "Log Kendaraan"
+        '
         'ControlToolStripMenuItem
         '
         Me.ControlToolStripMenuItem.Name = "ControlToolStripMenuItem"
@@ -91,8 +98,8 @@ Partial Class MDIParent1
         'DisplayToolStripMenuItem
         '
         Me.DisplayToolStripMenuItem.Name = "DisplayToolStripMenuItem"
-        Me.DisplayToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
-        Me.DisplayToolStripMenuItem.Text = "Area Parkir"
+        Me.DisplayToolStripMenuItem.Size = New System.Drawing.Size(105, 20)
+        Me.DisplayToolStripMenuItem.Text = "Entry Kendaraan"
         '
         'VerifikasiKeluarToolStripMenuItem
         '
@@ -159,5 +166,6 @@ Partial Class MDIParent1
     Friend WithEvents KelolaPetugasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VerifikasiKeluarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LogPetugasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents LogKendaraanToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
