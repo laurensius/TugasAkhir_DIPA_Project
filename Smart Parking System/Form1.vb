@@ -6,12 +6,14 @@ Public Class Form1
     Dim myPort As New SerialPort
     Public s1, s2, s3, s4, valNFC As String
     Public jam_tamu_masuk, jam_tamu_keluar As Integer
+    Public kend_masuk, kend_keluar As System.DateTime
     Dim sensor1, sensor2, sensor3, sensor4 As Integer
     Public conn As New MySqlConnection
     Public conn_string As String
     Dim cmd As MySqlCommand = Nothing
     Dim reader As MySqlDataReader = Nothing
     Dim reader2 As MySqlDataReader = Nothing
+    Dim kartu_anggota, kartu_tamu As String
     Dim f3 As Form3 = CType(Application.OpenForms("Form3"), Form3)
     Dim fpet As Petugas = CType(Application.OpenForms("Petugas"), Petugas)
 
@@ -36,7 +38,7 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        display()
+        C_PantauLahan()
         lapangan()
 
         If TextBox10.Text <> "" Then
@@ -187,8 +189,8 @@ Public Class Form1
         s4 = ping_4
         valNFC = nfc
     End Sub
-
-    Sub display()
+    '-----START CONTROL PANTAU LAHAN-----
+    Sub C_PantauLahan()
         TextBox6.Text = ""
         TextBox7.Text = ""
         TextBox8.Text = ""
@@ -213,22 +215,15 @@ Public Class Form1
             TextBox10.Text = data_kotor.Substring(0, data_kotor.Length - 2)
 
         End If
-
-        'If (TextBox10.Text = "P4324-4543-245") Then
-        '    Label12.Text = "Informasi : Data match!"
-        '    myPort.Write(0)
-        'Else
-        '    If (TextBox10.Text <> "P4324-4543-245") Then
-        '        Label12.Text = "Informasi : Data not match!"
-        '    End If
-        'End If
     End Sub
+    '-----END CONTROL PANTAU LAHAN-------
     Sub konversiSensor()
         sensor1 = Val(TextBox6.Text)
         sensor2 = Val(TextBox7.Text)
         sensor3 = Val(TextBox8.Text)
         sensor4 = Val(TextBox9.Text)
     End Sub
+    '------START CONTROL ENTRY KENDARAAN & VERIFIKASI KELUAR--------
     Sub verifikasiKartu()
         bacaSerial()
         Dim da, da_kend, da_tamu As MySqlDataAdapter
@@ -255,10 +250,13 @@ Public Class Form1
         count = ds.Tables("anggota").Rows.Count
         If ds_kend.Tables("kendaraan").Rows.Count > 0 Then
             status_kend = ds_kend.Tables("kendaraan").Rows(0).Item(0)
+            kartu_anggota = ds.Tables("anggota").Rows(0).Item(0)
             If count > 0 And status_kend = "0" Then
                 Label12.Text = "Informasi : Data match!"
                 myPort.Write(0)
                 update_status1()
+                kend_masuk = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+                f3.Label2.Text = "Penghuni"
             ElseIf count = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
@@ -266,16 +264,22 @@ Public Class Form1
                 Label12.Text = "Informasi : Data match!"
                 myPort.Write(2)
                 update_status0()
+                insertLogPenghuni()
+                fpet.Label5.Text = "Penghuni"
+                fpet.Label7.Text = ""
             ElseIf count = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
         ElseIf count_tamu > 0 Then
             status_tamu = ds_tamu.Tables("tamu").Rows(0).Item(1)
+            kartu_tamu = ds_tamu.Tables("tamu").Rows(0).Item(0)
             If count_tamu > 0 And status_tamu = "0" Then
                 Label12.Text = "Informasi : Data match!"
                 myPort.Write(0)
                 update_status_tamu1()
                 jam_tamu_masuk = DateTime.Now.Hour
+                kend_masuk = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+                f3.Label2.Text = "Tamu"
             ElseIf count_tamu = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
@@ -286,12 +290,14 @@ Public Class Form1
                 jam_tamu_keluar = DateTime.Now.Hour
                 updateJam()
                 hitungBiaya()
+                insertLogTamu()
+                fpet.Label5.Text = "Tamu"
             ElseIf count_tamu = 0 Then
                 Label12.Text = "Informasi : Data not match!"
             End If
-        End If
-        
+        End If   
     End Sub
+    '------END CONTROL ENTRY KENDARAAN & VERIFIKASI KELUAR--------
     Private Sub update_status1()
         Dim val As String
         Dim sqlupd As String
@@ -338,48 +344,65 @@ Public Class Form1
         da.Fill(ds, "sensor_lot")
         sensorDefault = ds.Tables("sensor_lot").Rows(0).Item(0)
         Try
-            f3.Label1.Text = sensorDefault
+            'f3.Label1.Text = sensorDefault
             If sensor1 >= sensorDefault And sensor1 < 22 Then
                 f3.LabelA1.Text = "Tersedia"
+                f3.LabelA1.ForeColor = Color.Green
             ElseIf sensor1 < sensorDefault And sensor1 > 0 Then
                 f3.LabelA1.Text = "Tidak Tersedia"
+                f3.LabelA1.ForeColor = Color.Red
+
             ElseIf (sensor1 = 0 And f3.LabelA1.Text = "Tersedia") Then
                 f3.LabelA1.Text = "Tersedia"
+                f3.LabelA1.ForeColor = Color.Green
             ElseIf (sensor1 = 0 And f3.LabelA1.Text = "Tidak Tersedia") Then
                 f3.LabelA1.Text = "Tidak Tersedia"
+                f3.LabelA1.ForeColor = Color.Red
             End If
 
             If sensor2 >= sensorDefault And sensor2 < 22 Then
                 f3.LabelA2.Text = "Tersedia"
+                f3.LabelA2.ForeColor = Color.Green
             ElseIf sensor2 < sensorDefault And sensor2 > 0 Then
                 f3.LabelA2.Text = "Tidak Tersedia"
+                f3.LabelA2.ForeColor = Color.Red
             ElseIf (sensor2 = 0 And f3.LabelA2.Text = "Tersedia") Then
                 f3.LabelA2.Text = "Tersedia"
+                f3.LabelA2.ForeColor = Color.Green
             ElseIf (sensor2 = 0 And f3.LabelA2.Text = "Tidak Tersedia") Then
                 f3.LabelA2.Text = "Tidak Tersedia"
+                f3.LabelA2.ForeColor = Color.Red
             End If
 
             If sensor3 >= sensorDefault And sensor3 < 22 Then
                 f3.LabelA3.Text = "Tersedia"
+                f3.LabelA3.ForeColor = Color.Green
             ElseIf sensor3 < sensorDefault And sensor3 > 0 Then
                 f3.LabelA3.Text = "Tidak Tersedia"
+                f3.LabelA3.ForeColor = Color.Red
             ElseIf (sensor3 = 0 And f3.LabelA3.Text = "Tersedia") Then
                 f3.LabelA3.Text = "Tersedia"
+                f3.LabelA3.ForeColor = Color.Green
             ElseIf (sensor3 = 0 And f3.LabelA3.Text = "Tidak Tersedia") Then
                 f3.LabelA3.Text = "Tidak Tersedia"
+                f3.LabelA3.ForeColor = Color.Red
             End If
 
             If sensor4 >= sensorDefault And sensor4 < 22 Then
                 f3.LabelA4.Text = "Tersedia"
+                f3.LabelA4.ForeColor = Color.Green
             ElseIf sensor4 < sensorDefault And sensor4 > 0 Then
                 f3.LabelA4.Text = "Tidak Tersedia"
+                f3.LabelA4.ForeColor = Color.Red
             ElseIf (sensor4 = 0 And f3.LabelA4.Text = "Tersedia") Then
                 f3.LabelA4.Text = "Tersedia"
+                f3.LabelA4.ForeColor = Color.Green
             ElseIf (sensor4 = 0 And f3.LabelA4.Text = "Tidak Tersedia") Then
                 f3.LabelA4.Text = "Tidak Tersedia"
+                f3.LabelA4.ForeColor = Color.Red
             End If
         Catch ex As Exception
-            MsgBox("Harap Buka Form Display Terlebih Dahulu !")
+            'MsgBox("Harap Buka Form Display Terlebih Dahulu !")
             init()
             myPort.Close()
             Timer1.Stop()
@@ -425,14 +448,49 @@ Public Class Form1
         masuk = ds.Tables("tamu").Rows(0).Item(0)
         keluar = ds.Tables("tamu").Rows(0).Item(1)
         jumlah = (keluar - masuk)
+        fpet.Label7.Text = ""
         If jumlah = 0 Then
-            fpet.Label7.Text = "1000"
+            fpet.Label7.Text = "Rp." + "1000"
         Else
             jumlah2 = jumlah * 1000
-            fpet.Label7.Text = jumlah2.ToString
+            fpet.Label7.Text = "Rp." + jumlah2.ToString
         End If
     End Sub
+    Private Sub insertLogPenghuni()
+        Dim sql As String
+        sql = "insert into log_kendaraan (id_kartu,waktu_masuk,waktu_keluar) values(@id,@masuk,now())"
+        Dim SqlCommand As New MySqlCommand(Sql, conn)
+        Try
+            With SqlCommand.Parameters
+                .AddWithValue("@id", Me.kartu_anggota)
+                .AddWithValue("@masuk", Me.kend_masuk)
+            End With
+            SqlCommand.ExecuteNonQuery()
+            Me.kend_masuk = Nothing
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Private Sub insertLogTamu()
+        Dim sql As String
+        sql = "insert into log_kendaraan (id_kartu,waktu_masuk,waktu_keluar) values(@id,@masuk,now())"
+        Dim SqlCommand As New MySqlCommand(sql, conn)
+        Try
+            With SqlCommand.Parameters
+                .AddWithValue("@id", Me.kartu_tamu)
+                .AddWithValue("@masuk", Me.kend_masuk)
+            End With
+            SqlCommand.ExecuteNonQuery()
+            Me.kend_masuk = Nothing
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub Label13_Click(sender As Object, e As EventArgs) Handles Label13.Click
 
     End Sub
 End Class

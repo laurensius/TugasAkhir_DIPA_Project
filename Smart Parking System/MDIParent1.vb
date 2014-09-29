@@ -42,10 +42,19 @@ Public Class MDIParent1
                 Return
             End If
         Next
+        For Each g As Form In Application.OpenForms
+            If TypeOf g Is PantauLahan Then
+                g.Activate()
+                Return
+            End If
+        Next
         Dim mdiChild As New Form1()
+        Dim pantauLahan As New PantauLahan()
         mdiChild.MdiParent = Me
         If Application.OpenForms().OfType(Of Form3).Any And Application.OpenForms().OfType(Of Petugas).Any Then
             mdiChild.Show()
+        ElseIf Login.level = 0 Then
+            pantauLahan.Show()
         Else
             MsgBox("Silahkan Buka Form Display dan Verifikasi Keluar Terlebih Dahulu")
         End If
@@ -123,6 +132,18 @@ Public Class MDIParent1
             End If
         Next
         Dim mdiChild As New log_petugas
+        mdiChild.MdiParent = Me
+        mdiChild.Show()
+    End Sub
+
+    Private Sub LogKendaraanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogKendaraanToolStripMenuItem.Click
+        For Each f As Form In Application.OpenForms
+            If TypeOf f Is LogKendaraan Then
+                f.Activate()
+                Return
+            End If
+        Next
+        Dim mdiChild As New LogKendaraan()
         mdiChild.MdiParent = Me
         mdiChild.Show()
     End Sub

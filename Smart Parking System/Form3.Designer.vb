@@ -173,7 +173,7 @@ Partial Class Form3
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Form3"
-        Me.Text = "Info Lot Parkir"
+        Me.Text = "Entry Kendaraan"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)

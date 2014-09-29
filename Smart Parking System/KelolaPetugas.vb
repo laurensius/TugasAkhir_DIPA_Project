@@ -104,7 +104,7 @@ Public Class KelolaPetugas
             End If
             If sitem = "update" Then
                 txtUsername.Enabled = True
-                txtPassword.Enabled = True
+                txtPassword.Enabled = False
                 txtNama.Enabled = True
                 txtAlamat.Enabled = True
                 btnUpdate.Enabled = True
@@ -116,7 +116,7 @@ Public Class KelolaPetugas
             End If
             If sitem = "delete" Then
                 txtUsername.Enabled = True
-                txtPassword.Enabled = True
+                txtPassword.Enabled = False
                 txtNama.Enabled = True
                 txtAlamat.Enabled = True
                 btnUpdate.Enabled = False
@@ -132,7 +132,7 @@ Public Class KelolaPetugas
     Private Sub cmbPetugas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPetugas.SelectedIndexChanged
         LoadData()
     End Sub
-
+    '-----START CONTROL KELOLA PETUGAS------
     Private Sub btnSimpan_Click(sender As Object, e As EventArgs) Handles btnSimpan.Click
         connString = "Server=Localhost;Database=smart_parking;User Id=root;password="
         conn = New MySqlConnection(connString)
@@ -197,4 +197,5 @@ Public Class KelolaPetugas
             MsgBox(ex.Message)
         End Try
     End Sub
+    '-----END CONTROL KELOLA PETUGAS-------
 End Class

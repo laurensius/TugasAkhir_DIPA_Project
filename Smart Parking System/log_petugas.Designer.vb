@@ -35,7 +35,7 @@ Partial Class log_petugas
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(135, 9)
+        Me.Label1.Location = New System.Drawing.Point(89, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(128, 18)
         Me.Label1.TabIndex = 0
@@ -86,14 +86,14 @@ Partial Class log_petugas
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersWidth = 40
-        Me.DataGridView1.Size = New System.Drawing.Size(376, 233)
+        Me.DataGridView1.Size = New System.Drawing.Size(236, 233)
         Me.DataGridView1.TabIndex = 6
         '
         'log_petugas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 357)
+        Me.ClientSize = New System.Drawing.Size(306, 357)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button1)

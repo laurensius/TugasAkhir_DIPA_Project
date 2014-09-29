@@ -29,8 +29,8 @@ Partial Class Login
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pictureFoto1 = New System.Windows.Forms.PictureBox()
+        CType(Me.pictureFoto1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -84,22 +84,22 @@ Partial Class Login
         Me.Button2.Text = "KELUAR"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'pictureFoto1
         '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(22, 2)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(307, 143)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 8
-        Me.PictureBox1.TabStop = False
+        Me.pictureFoto1.Image = CType(resources.GetObject("pictureFoto1.Image"), System.Drawing.Image)
+        Me.pictureFoto1.Location = New System.Drawing.Point(74, 12)
+        Me.pictureFoto1.Name = "pictureFoto1"
+        Me.pictureFoto1.Size = New System.Drawing.Size(211, 132)
+        Me.pictureFoto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pictureFoto1.TabIndex = 36
+        Me.pictureFoto1.TabStop = False
         '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(355, 263)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pictureFoto1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.txtPassword)
@@ -110,7 +110,7 @@ Partial Class Login
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pictureFoto1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -121,6 +121,6 @@ Partial Class Login
     Friend WithEvents txtPassword As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents pictureFoto1 As System.Windows.Forms.PictureBox
 
 End Class

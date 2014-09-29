@@ -8,8 +8,9 @@ Public Class Login
     Dim count As Integer
     Public username As String
     Public jam_masuk As System.DateTime
+    Public level As Integer
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        login()
+        C_login()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -19,7 +20,8 @@ Public Class Login
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
-    Private Sub login()
+    '----Start Control Login-----
+    Private Sub C_login()
         connString = "Server=Localhost;Database=smart_parking;User Id=root;password="
         Dim conn As New MySqlConnection(connString)
         Try
@@ -31,7 +33,6 @@ Public Class Login
         Dim ds As DataSet
 
         Dim password As String
-        Dim level As Integer
         username = txtUsername.Text
         password = txtPassword.Text
         sql = "select * from admin where username = '" + username + "'"
@@ -46,6 +47,8 @@ Public Class Login
                     If level = 0 Then
                         MsgBox("Login Sukses")
                         MDIParent1.KelolaPenggunaToolStripMenuItem.Enabled = True
+                        MDIParent1.DisplayToolStripMenuItem.Enabled = False
+                        MDIParent1.VerifikasiKeluarToolStripMenuItem.Enabled = False
                         MDIParent1.Show()
                         txtUsername.Text = ""
                         txtPassword.Text = ""
@@ -53,6 +56,8 @@ Public Class Login
                     Else
                         MsgBox("Login Sukses")
                         MDIParent1.KelolaPenggunaToolStripMenuItem.Enabled = False
+                        MDIParent1.DisplayToolStripMenuItem.Enabled = True
+                        MDIParent1.VerifikasiKeluarToolStripMenuItem.Enabled = True
                         MDIParent1.Show()
                         txtUsername.Text = ""
                         txtPassword.Text = ""
@@ -67,15 +72,16 @@ Public Class Login
         End Try
         conn.Close()
     End Sub
+    '-----END CONTROL LOGIN--------
 
     Private Sub txtPassword_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPassword.KeyPress
 
         If e.KeyChar = Chr(13) Then
-            login()
+            C_login()
         End If
     End Sub
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

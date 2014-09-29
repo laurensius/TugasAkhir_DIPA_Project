@@ -54,9 +54,19 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label12
@@ -326,11 +336,101 @@ Partial Class Form1
         Me.Label13.TabIndex = 14
         Me.Label13.Text = "Pusat Kontrol"
         '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.Label21)
+        Me.GroupBox4.Controls.Add(Me.Label20)
+        Me.GroupBox4.Controls.Add(Me.Label19)
+        Me.GroupBox4.Controls.Add(Me.Label18)
+        Me.GroupBox4.Controls.Add(Me.Label17)
+        Me.GroupBox4.Controls.Add(Me.Label16)
+        Me.GroupBox4.Controls.Add(Me.Label15)
+        Me.GroupBox4.Controls.Add(Me.Label14)
+        Me.GroupBox4.Location = New System.Drawing.Point(33, 364)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(200, 100)
+        Me.GroupBox4.TabIndex = 15
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Keterangan Sensor"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(117, 84)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(61, 13)
+        Me.Label21.TabIndex = 18
+        Me.Label21.Text = "Lot Kosong"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(26, 84)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(34, 13)
+        Me.Label20.TabIndex = 17
+        Me.Label20.Text = "14-19"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(117, 61)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(50, 13)
+        Me.Label19.TabIndex = 16
+        Me.Label19.Text = "Lot Terisi"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(26, 61)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(28, 13)
+        Me.Label18.TabIndex = 4
+        Me.Label18.Text = "6-13"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(101, 38)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(93, 13)
+        Me.Label17.TabIndex = 3
+        Me.Label17.Text = "Gangguan/Rusak"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(26, 38)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(13, 13)
+        Me.Label16.TabIndex = 2
+        Me.Label16.Text = "0"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(117, 16)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(62, 13)
+        Me.Label15.TabIndex = 1
+        Me.Label15.Text = "Keterangan"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(6, 16)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(70, 13)
+        Me.Label14.TabIndex = 0
+        Me.Label14.Text = "Value Sensor"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(720, 488)
+        Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.GroupBox3)
@@ -349,6 +449,8 @@ Partial Class Form1
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -384,4 +486,13 @@ Partial Class Form1
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents Label14 As System.Windows.Forms.Label
 End Class

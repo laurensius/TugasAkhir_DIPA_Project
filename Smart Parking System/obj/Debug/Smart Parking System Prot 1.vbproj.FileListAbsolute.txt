@@ -16,3 +16,5 @@ D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\obj\Debug\WindowsApp
 D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\obj\Debug\WindowsApplication1.Petugas.resources
 D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\obj\Debug\WindowsApplication1.KelolaPetugas.resources
 D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\obj\Debug\WindowsApplication1.log_petugas.resources
+D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\obj\Debug\WindowsApplication1.LogKendaraan.resources
+D:\Latihan\VB.Net\Smart Parking System\Smart Parking System\obj\Debug\WindowsApplication1.PantauLahan.resources

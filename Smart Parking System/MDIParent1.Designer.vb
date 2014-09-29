@@ -24,12 +24,14 @@ Partial Class MDIParent1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MDIParent1))
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.KelolaPenggunaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KelolaPenggunaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KelolaPetugasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GenerateKartuParkirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogPetugasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LogKendaraanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DisplayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerifikasiKeluarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -52,7 +54,7 @@ Partial Class MDIParent1
         '
         'KelolaPenggunaToolStripMenuItem
         '
-        Me.KelolaPenggunaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KelolaPenggunaToolStripMenuItem1, Me.KelolaPetugasToolStripMenuItem, Me.GenerateKartuParkirToolStripMenuItem, Me.LogPetugasToolStripMenuItem})
+        Me.KelolaPenggunaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KelolaPenggunaToolStripMenuItem1, Me.KelolaPetugasToolStripMenuItem, Me.GenerateKartuParkirToolStripMenuItem, Me.LogPetugasToolStripMenuItem, Me.LogKendaraanToolStripMenuItem})
         Me.KelolaPenggunaToolStripMenuItem.Name = "KelolaPenggunaToolStripMenuItem"
         Me.KelolaPenggunaToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.KelolaPenggunaToolStripMenuItem.Text = "Kelola Data"
@@ -81,6 +83,12 @@ Partial Class MDIParent1
         Me.LogPetugasToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.LogPetugasToolStripMenuItem.Text = "Log Petugas"
         '
+        'LogKendaraanToolStripMenuItem
+        '
+        Me.LogKendaraanToolStripMenuItem.Name = "LogKendaraanToolStripMenuItem"
+        Me.LogKendaraanToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.LogKendaraanToolStripMenuItem.Text = "Log Kendaraan"
+        '
         'ControlToolStripMenuItem
         '
         Me.ControlToolStripMenuItem.Name = "ControlToolStripMenuItem"
@@ -90,8 +98,8 @@ Partial Class MDIParent1
         'DisplayToolStripMenuItem
         '
         Me.DisplayToolStripMenuItem.Name = "DisplayToolStripMenuItem"
-        Me.DisplayToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
-        Me.DisplayToolStripMenuItem.Text = "Display"
+        Me.DisplayToolStripMenuItem.Size = New System.Drawing.Size(105, 20)
+        Me.DisplayToolStripMenuItem.Text = "Entry Kendaraan"
         '
         'VerifikasiKeluarToolStripMenuItem
         '
@@ -125,6 +133,8 @@ Partial Class MDIParent1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ClientSize = New System.Drawing.Size(632, 453)
         Me.ControlBox = False
         Me.Controls.Add(Me.MenuStrip)
@@ -133,7 +143,7 @@ Partial Class MDIParent1
         Me.MainMenuStrip = Me.MenuStrip
         Me.Name = "MDIParent1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "DIPA (Digital Integrated Parking Allocation)"
+        Me.Text = "Menu Utama"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
@@ -156,5 +166,6 @@ Partial Class MDIParent1
     Friend WithEvents KelolaPetugasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VerifikasiKeluarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LogPetugasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents LogKendaraanToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
